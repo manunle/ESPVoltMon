@@ -63,6 +63,10 @@ const char PAGE_AdminGeneralSettings[] PROGMEM =  R"=====(
   <td align="right">Email Address</td>
   <td><input type="text" id="EmailAddress" name="EmailAddress" value=""></td>
 </tr>
+<tr>
+  <td align="right">Relay Pin</td>
+  <td><input type="text" id="RelayPin" name="RelayPin" value=""></td>
+</tr>
 <tr><td colspan="2" align="center"><input type="submit" style="width:150px" class="btn btn--m btn--blue" value="Save"></td></tr>
 </table>
 </form>
@@ -108,6 +112,7 @@ void send_devicename_value_html()
   values += "voltcalib|" + (String) config.voltcalib + "|div\n";
   values += "VoltEmailThreshold|" + (String) config.VoltEmailThreshold + "|div\n";
   values += "EmailAddress|" + (String) config.EmailAddress + "|div\n";
+  values += "RelayPin|" + (String) config.RelayPin + "|div\n";
 	server.send ( 200, "text/plain", values);
 	Serial.println(__FUNCTION__); 
 	
@@ -137,6 +142,7 @@ void send_general_html()
       if (server.argName(i) == "voltcalib") config.voltcalib = server.arg(i).toInt();
       if (server.argName(i) == "VoltEmailThreshold") config.VoltEmailThreshold = server.arg(i).toInt();
       if (server.argName(i) == "EmailAddress") config.EmailAddress = urldecode(server.arg(i));
+      if (server.argName(i) == "RelayPin") config.RelayPin = server.arg(i).toInt();
 		}
 		WriteConfig();
 		firstStart = true;
@@ -164,6 +170,7 @@ void send_general_configuration_values_html()
   values += "voltcalib|" + (String) config.voltcalib + "|input\n";
   values += "VoltEmailThreshold|" + (String) config.VoltEmailThreshold + "|input\n";
   values += "EmailAddress|" + (String) config.EmailAddress + "|input\n";
+  values += "RelayPin|" + (String) config.RelayPin + "|input\n";
 	server.send ( 200, "text/plain", values);
 	Serial.println(__FUNCTION__); 
   AdminTimeOutCounter=0;

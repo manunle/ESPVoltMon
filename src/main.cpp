@@ -14,6 +14,7 @@ void setup()
 {
   Serial.begin(115200);
   pinMode(5,OUTPUT);
+  pinMode(12,OUTPUT);
   Esp.initialize();
   gsender = Gsender::Instance();
 }
@@ -59,6 +60,7 @@ void loop() {
   Esp.loop();
   VoltLoop();
   digitalWrite(5,HIGH);
+  digitalWrite(12,LOW);
 }
 
 void mqttCallback(char* topic, byte* payload, unsigned int length) {
