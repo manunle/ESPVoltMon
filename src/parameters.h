@@ -28,7 +28,6 @@ struct strConfig {
   long voltcalib;                       // 4 Byte - EEPROM 342
   long VoltEmailThreshold;              // 4 byte - EEPROM 346
   String EmailAddress;                  // 32 bytes - EEPROM 350
-  byte RelayPin                         // 1 byte - EEPROM 382
   // Application Settings here... from EEPROM 296 up to 511 (0 - 511)
 
 } config;
@@ -226,7 +225,6 @@ struct strConfig {
     EEPROMWritelong(342,config.voltcalib);
     EEPROMWritelong(346,config.VoltEmailThreshold);
     WriteStringToEEPROM(350,config.EmailAddress);
-    EEPROM.write(382,config.RelayPin);
       // Application Settings here... from EEPROM 192 up to 511 (0 - 511)
 
     EEPROM.commit();
@@ -277,7 +275,6 @@ struct strConfig {
       config.voltcalib = EEPROMReadlong(342);
       config.VoltEmailThreshold = EEPROMReadlong(346);
       config.EmailAddress = ReadStringFromEEPROM(350);
-      config.RelayPin = EEPROM.read(382);
       // Application parameters here ... from EEPROM 192 to 511
 
       return true;
